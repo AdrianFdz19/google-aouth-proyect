@@ -18,6 +18,7 @@
   },
   "dependencies": {
     "@vitejs/plugin-react": "^4.3.1",
+    "dotenv": "^16.4.5",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "standard": "^17.1.0"

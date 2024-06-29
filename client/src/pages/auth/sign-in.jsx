@@ -1,6 +1,7 @@
 import React from 'react'
 import './styles.scss';
 import images from '../../../assets';
+import { getGoogleUrl } from '../../utils/getGoogleUrl';
 
 export default function SignIn() {
   return (
@@ -12,14 +13,15 @@ export default function SignIn() {
                 <input type="password" placeholder='Password' />
                 <input type="submit" value='submit' />
             </form>
-            <button
+            <a
                 className='google-btn px-3'
+                href={getGoogleUrl('/profile')}
             >
                 <img
                 className='w-[2rem] h-auto'
                 src={images.google} alt="img" />
                 <p>Sign in with Google</p>
-            </button>
+            </a>
         </div>
     </div>
   )

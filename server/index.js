@@ -2,6 +2,7 @@ import express from 'express'
 import cors from 'cors'
 import path from 'path'
 import { config } from 'dotenv';
+import oauth from './routers/google/oauth.js';
 config();
 
 const app = express();
@@ -10,6 +11,7 @@ const PORT = process.env.PORT || 3000;
 // Midleware global
 app.use(express.json());
 app.use(cors());
+app.use('/', oauth);
 
 // Ruta global
 app.get('/server', (req,res) => res.send('Server is online...'));
