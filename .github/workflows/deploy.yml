@@ -1,0 +1,35 @@
+name: Build and Deploy to Render
+
+on:
+  push:
+    branches:
+      - main  # Ajusta la rama según tu flujo de trabajo
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '16'  # Ajusta la versión según tus necesidades
+
+    # Construir la aplicación React en el directorio 'client'
+    - name: Install dependencies and build client
+      working-directory: ./client
+      run: |
+        npm install
+        npm run build
+
+    # Instalar dependencias del servidor en el directorio 'server'
+    - name: Install server dependencies
+      working-directory: ./server
+      run: npm install
+
+    # Desplegar usando el deploy hook de Render
+    - name: Trigger Render Deploy Hook
+      run: curl -X POST ${{ secrets.RENDER_DEPLOY_HOOK }}
